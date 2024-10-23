@@ -1,0 +1,282 @@
+
+:root {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+    --accent-primary: #ff0000;
+    --accent-secondary: #2ecc71;
+    --note-bg: #2d2d2d;
+    --note-text: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.navbar {
+    background-color: var(--bg-secondary) !important;
+}
+
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--accent-primary) !important;
+}
+
+.add-video-form {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    margin: 20px 0;
+}
+
+.form-control {
+    background-color: var(--bg-primary);
+    border: 1px solid #404040;
+    color: var(--text-primary);
+}
+
+.form-control:focus {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.25);
+}
+
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.video-card {
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.3);
+}
+
+.video-player-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+}
+
+.video-player-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 90vw;  /* Changed from fixed width to viewport-relative */
+    height: 80vh;     /* Set height relative to viewport */
+    min-height: 70vh; /* Ensure minimum height of 70% of viewport */
+    margin: auto;     /* Center the wrapper */
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.video-player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 15px;
+}
+.video-note-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-secondary);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 1060;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-note-icon:hover {
+    transform: scale(1.1);
+    background: var(--accent-primary);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+#videoPlayer{
+    height: 80vh;
+}
+/* Update player controls positioning and styling */
+.player-controls {
+    position: absolute;
+    top: 20px;          /* Changed from -50px to provide better visibility */
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
+    padding: 10px;
+    border-radius: 25px;
+    backdrop-filter: blur(5px);
+    z-index: 1061;
+}
+
+.control-button {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.control-button:hover {
+    color: var(--accent-primary);
+}
+
+.sticky-note {
+    position: absolute;
+    min-width: 250px;
+    min-height: 200px;
+    background: var(--note-bg);
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    cursor: move;
+    z-index: 1030;
+}
+
+.sticky-note textarea {
+    width: 100%;
+    height: calc(100% - 30px);
+    border: none;
+    background: transparent;
+    resize: both;
+    color: var(--note-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.note-controls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    gap: 5px;
+}
+
+.note-controls button {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px 5px;
+    transition: color 0.3s ease;
+}
+
+.note-controls button:hover {
+    color: var(--text-primary);
+}
+
+.notes-panel {
+    position: fixed;
+    right: -350px;
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: var(--bg-secondary);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    z-index: 1045;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.notes-panel.active {
+    right: 0;
+}
+
+.notes-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #404040;
+}
+
+.saved-note {
+    background: var(--note-bg);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.saved-note p {
+    margin: 0;
+    color: var(--note-text);
+}
+
+.delete-note {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-note:hover {
+    color: var(--accent-primary);
+}
+
+.note-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--accent-secondary);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 1040;
+    transition: transform 0.3s ease;
+}
+
+.note-icon:hover {
+    transform: scale(1.1);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
